@@ -1,0 +1,556 @@
+<!doctype html>
+<html lang="hy">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Ադմին</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+Armenian:wdth,wght@75,700&family=Noto+Sans+Armenian:wght@400;500;600;700&display=swap">
+<style>
+/* Admin: sticky bar (brand · unsaved badge · publish) → tab chips → editable cards. Same palette as the site. */
+:root{
+  --bg:#F3F4F1; --surface:#FFFFFF; --surface-2:#E8EAE5; --ink:#1A1D1A; --muted:#5E655F; --line:#D8DBD5;
+  --accent:#23493C; --accent-ink:#F3F4F1; --wood:#9C6B3F; --danger:#B3261E; --danger-ink:#FFFFFF; --ok:#2E7D4F;
+  --f-display:"Noto Serif Armenian", "Sylfaen", Georgia, serif;
+  --f-body:"Noto Sans Armenian", "Arial Unicode MS", system-ui, sans-serif;
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){:root{
+  --bg:#121512; --surface:#1A1E1B; --surface-2:#232824; --ink:#ECEDE8; --muted:#A1A9A2; --line:#2C322D;
+  --accent:#8FC2A8; --accent-ink:#121512; --wood:#D49A62; --danger:#F2B8B5; --danger-ink:#3B0907; --ok:#8FD3A8; color-scheme:dark;
+}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 15px/1.55 var(--f-body);-webkit-font-smoothing:antialiased}
+[hidden]{display:none!important}
+button,input,select,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+button:disabled{opacity:.45;cursor:default}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:6px}
+h1,h2,h3{font-family:var(--f-display);font-stretch:75%;margin:0;line-height:1.15}
+.wrap{max-width:1180px;margin:0 auto;padding-inline:16px}
+.muted{color:var(--muted)}
+input,select,textarea{background:var(--surface);border:1.5px solid var(--line);border-radius:10px;padding:9px 12px;width:100%;font-size:14.5px}
+textarea{resize:vertical}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--accent)}
+.fl{display:flex;flex-direction:column;gap:5px;font-size:13px;font-weight:500;color:var(--muted)}
+.fl>input,.fl>textarea,.fl>select{color:var(--ink);font-weight:400}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;border:1.5px solid var(--accent);background:var(--accent);color:var(--accent-ink);padding:10px 18px;border-radius:999px;font-weight:600;text-decoration:none;white-space:nowrap}
+.btn.ghost{background:transparent;color:var(--ink);border-color:var(--line)}
+.btn.ghost:hover{border-color:var(--ink)}
+.btn.sm{padding:6px 12px;font-size:13px}
+.btn.danger{background:transparent;color:var(--danger);border-color:var(--danger)}
+.btn.danger[data-armed="1"]{background:var(--danger);color:var(--danger-ink)}
+.ib{width:32px;height:32px;border-radius:999px;border:1.5px solid var(--line);background:var(--surface);display:grid;place-items:center;font-weight:700}
+
+/* Auth screens */
+.auth{min-height:100vh;display:grid;place-items:center;padding:24px 16px}
+.auth form{width:min(420px,100%);background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:28px;display:flex;flex-direction:column;gap:14px}
+.auth h1{font-size:30px}
+.auth p{margin:0;color:var(--muted);font-size:14px}
+.auth ol{margin:0;padding-left:20px;color:var(--muted);font-size:14px;display:flex;flex-direction:column;gap:4px}
+.auth a{color:var(--accent)}
+.err{color:var(--danger);font-size:14px;font-weight:500}
+.link{background:none;border:0;padding:0;color:var(--accent);text-decoration:underline;font-size:14px;align-self:flex-start}
+
+/* App */
+.top{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;align-items:center;gap:12px;min-height:64px;flex-wrap:wrap;padding-block:8px}
+.top h1{font-size:22px;margin-right:auto}
+.badge{font-size:13px;font-weight:600;color:var(--wood);background:color-mix(in srgb,var(--wood) 14%,transparent);padding:4px 10px;border-radius:999px}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;padding-block:18px 8px}
+.tab{border:1.5px solid var(--line);background:transparent;padding:8px 15px;border-radius:999px;font-weight:500;font-size:14px}
+.tab[aria-selected="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.bar2{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin:12px 0 18px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:16px;padding-bottom:80px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:12px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.thumb{position:relative;border-radius:10px;overflow:hidden;background:var(--surface-2)}
+.thumb img,.thumb video{display:block;width:100%;aspect-ratio:4/3;object-fit:cover}
+.new{position:absolute;top:8px;left:8px;background:var(--wood);color:var(--surface);font-size:11.5px;font-weight:700;padding:2px 8px;border-radius:999px}
+.checks{display:flex;flex-wrap:wrap;gap:6px}
+.ck{display:inline-flex;align-items:center;gap:5px;font-size:12.5px;border:1px solid var(--line);border-radius:999px;padding:3px 9px 3px 6px;cursor:pointer}
+.ck input{width:auto;margin:0;accent-color:var(--accent)}
+.ck:has(input:checked){border-color:var(--accent);background:color-mix(in srgb,var(--accent) 10%,transparent)}
+.acts{display:flex;gap:6px;align-items:center;flex-wrap:wrap;margin-top:auto}
+.acts .btn.danger{margin-left:auto}
+.sec{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:20px;margin-bottom:16px;display:flex;flex-direction:column;gap:12px}
+.sec h2{font-size:22px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.two>*{min-width:0}
+.prev img,.prev video{display:block;width:100%;max-height:260px;object-fit:cover;border-radius:10px;background:var(--surface-2)}
+.row{display:flex;gap:8px;align-items:center}
+.list{display:flex;flex-direction:column;gap:10px}
+.item{display:grid;grid-template-columns:1fr 2fr auto;gap:8px;align-items:start}
+@media (max-width:700px){.two{grid-template-columns:1fr}.item{grid-template-columns:1fr}}
+.toast{position:fixed;left:50%;bottom:20px;transform:translateX(-50%);z-index:50;background:var(--ink);color:var(--bg);padding:11px 18px;border-radius:14px;font-weight:600;font-size:14px;max-width:calc(100% - 32px)}
+.toast.bad{background:var(--danger);color:var(--danger-ink)}
+.log{position:fixed;right:16px;bottom:16px;z-index:40;width:min(380px,calc(100% - 32px));max-height:50vh;overflow:auto;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px;box-shadow:0 20px 40px -24px rgb(0 0 0/.5);font-size:13px}
+.log b{display:block;margin-bottom:6px;font-size:14px}
+.log div{padding:2px 0;color:var(--muted);overflow-wrap:anywhere}
+.log .ok{color:var(--ok);font-weight:600}
+.log .bad{color:var(--danger);font-weight:600}
+</style>
+</head>
+<body>
+
+<!-- Login -->
+<div class="auth" id="scrLogin" hidden>
+  <form id="loginForm">
+    <h1>Մուտք ադմին</h1>
+    <p>Մուտքագրեք գաղտնաբառը՝ կայքը խմբագրելու համար։</p>
+    <label class="fl">Գաղտնաբառ<input id="loginPw" type="password" autocomplete="current-password" required></label>
+    <div class="err" id="loginErr"></div>
+    <button class="btn" type="submit" id="loginBtn">Մուտք</button>
+    <button class="link" type="button" id="toSetup">Նոր տոքեն կամ մոռացել եմ գաղտնաբառը</button>
+  </form>
+</div>
+
+<!-- Setup -->
+<div class="auth" id="scrSetup" hidden>
+  <form id="setupForm">
+    <h1>Ադմինի կարգավորում</h1>
+    <p>Մեկ անգամ է արվում։ Պետք է GitHub տոքեն, որը թույլ է տալիս փոխել կայքի ֆայլերը։</p>
+    <ol>
+      <li>Բացեք <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">github.com/settings/personal-access-tokens/new</a></li>
+      <li>Repository access → <b>Only select repositories</b> → ընտրեք կայքի ռեպոզիտորիան</li>
+      <li>Permissions → Repository → <b>Contents: Read and write</b></li>
+      <li>Generate token և պատճենեք այն այստեղ</li>
+    </ol>
+    <label class="fl">GitHub տոքեն<input id="setupToken" autocomplete="off" spellcheck="false" placeholder="github_pat_…" required></label>
+    <label class="fl">Նոր գաղտնաբառ (առնվազն 10 նիշ)<input id="setupPw1" type="password" autocomplete="new-password" required></label>
+    <label class="fl">Կրկնեք գաղտնաբառը<input id="setupPw2" type="password" autocomplete="new-password" required></label>
+    <div class="err" id="setupErr"></div>
+    <button class="btn" type="submit" id="setupBtn">Պահպանել և մտնել</button>
+    <button class="link" type="button" id="toLogin">Հետ դեպի մուտք</button>
+  </form>
+</div>
+
+<!-- App -->
+<div id="scrApp" hidden>
+  <header class="top"><div class="wrap">
+    <h1 id="appTitle">Ադմին</h1>
+    <span class="badge" id="dirtyBadge" hidden>Կան չհրապարակված փոփոխություններ</span>
+    <a class="btn ghost sm" href="./" target="_blank" rel="noopener">Դիտել կայքը</a>
+    <button class="btn ghost sm" type="button" id="discardBtn" disabled>Չեղարկել</button>
+    <button class="btn" type="button" id="publishBtn" disabled>Հրապարակել</button>
+  </div></header>
+  <div class="wrap">
+    <nav class="tabs" id="tabs" role="tablist"></nav>
+    <div id="panel"></div>
+  </div>
+</div>
+
+<div id="toastHost"></div>
+<div id="logHost"></div>
+
+<script>
+/* ---- Settings ---- */
+const OWNER = "gvirabyan", REPO = "mebel", BRANCH = "main";
+const IMG_MAX = 1600, VIDEO_MAX_MB = 40;
+
+/* ---- Helpers ---- */
+const $ = s => document.querySelector(s);
+const esc = s => String(s ?? "").replace(/[&<>"']/g, m => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]));
+const clone = o => JSON.parse(JSON.stringify(o));
+const enc = new TextEncoder(), dec = new TextDecoder();
+const bytesToB64 = u8 => { let s = ""; for(let i = 0; i < u8.length; i += 0x8000) s += String.fromCharCode.apply(null, u8.subarray(i, i + 0x8000)); return btoa(s); };
+const b64ToBytes = s => Uint8Array.from(atob(s), c => c.charCodeAt(0));
+const utf8ToB64 = str => bytesToB64(enc.encode(str));
+const blobToB64 = async b => bytesToB64(new Uint8Array(await b.arrayBuffer()));
+const ss = { get(k){ try{ return sessionStorage.getItem(k); }catch(e){ return null; } }, set(k,v){ try{ sessionStorage.setItem(k,v); }catch(e){} }, del(k){ try{ sessionStorage.removeItem(k); }catch(e){} } };
+function show(id){ ["scrLogin","scrSetup","scrApp"].forEach(s => $("#"+s).hidden = s !== id); }
+let toastT;
+function toast(msg, bad){ clearTimeout(toastT); $("#toastHost").innerHTML = `<div class="toast${bad?" bad":""}" role="status">${esc(msg)}</div>`; toastT = setTimeout(() => $("#toastHost").innerHTML = "", bad ? 6000 : 3000); }
+
+/* ---- Password vault: GitHub token encrypted with the admin password (AES-GCM, PBKDF2) ---- */
+async function deriveKey(pw, salt, iter){
+  const base = await crypto.subtle.importKey("raw", enc.encode(pw), "PBKDF2", false, ["deriveKey"]);
+  return crypto.subtle.deriveKey({name:"PBKDF2", salt, iterations:iter, hash:"SHA-256"}, base, {name:"AES-GCM", length:256}, false, ["encrypt","decrypt"]);
+}
+async function seal(token, pw){
+  const salt = crypto.getRandomValues(new Uint8Array(16)), iv = crypto.getRandomValues(new Uint8Array(12)), iter = 310000;
+  const ct = await crypto.subtle.encrypt({name:"AES-GCM", iv}, await deriveKey(pw, salt, iter), enc.encode(token));
+  return {v:1, iter, salt:bytesToB64(salt), iv:bytesToB64(iv), ct:bytesToB64(new Uint8Array(ct))};
+}
+async function unseal(vault, pw){
+  const key = await deriveKey(pw, b64ToBytes(vault.salt), vault.iter);
+  return dec.decode(await crypto.subtle.decrypt({name:"AES-GCM", iv:b64ToBytes(vault.iv)}, key, b64ToBytes(vault.ct)));
+}
+
+/* ---- GitHub API ---- */
+let TOKEN = null;
+const cpath = p => "contents/" + p.split("/").map(encodeURIComponent).join("/");
+function gh(path, opt = {}){
+  return fetch(`https://api.github.com/repos/${OWNER}/${REPO}/${path}`, {...opt, headers:{
+    Authorization:"Bearer " + TOKEN, Accept:"application/vnd.github+json", "X-GitHub-Api-Version":"2022-11-28",
+    ...(opt.body ? {"Content-Type":"application/json"} : {})}});
+}
+function apiErr(r){
+  if(r.status === 401) return new Error("GitHub տոքենը անվավեր է կամ ժամկետանց։ Ստեղծեք նորը և կրկին կարգավորեք ադմինը։");
+  if(r.status === 403 || r.status === 404) return new Error("Տոքենը իրավունք չունի փոխելու կայքի ֆայլերը։ Ստուգեք՝ Contents: Read and write։");
+  if(r.status === 409) return new Error("Ֆայլը միաժամանակ փոխվել է այլ տեղից։ Թարմացրեք էջը և կրկնեք։");
+  if(r.status === 422) return new Error("GitHub-ը չընդունեց ֆայլը (հնարավոր է՝ չափազանց մեծ է)։");
+  return new Error("GitHub-ի սխալ " + r.status);
+}
+async function getSha(p){
+  const r = await gh(cpath(p) + "?ref=" + BRANCH);
+  if(r.status === 404) return null;
+  if(!r.ok) throw apiErr(r);
+  return (await r.json()).sha;
+}
+async function putFile(p, b64, message, sha){
+  const r = await gh(cpath(p), {method:"PUT", body:JSON.stringify({message, content:b64, branch:BRANCH, ...(sha ? {sha} : {})})});
+  if(!r.ok) throw apiErr(r);
+}
+async function delFile(p, message){
+  const sha = await getSha(p); if(!sha) return;
+  const r = await gh(cpath(p), {method:"DELETE", body:JSON.stringify({message, sha, branch:BRANCH})});
+  if(!r.ok && r.status !== 404) throw apiErr(r);
+}
+
+/* ---- State ---- */
+let C = null, ORIG = null, VAULT = null, tab = "works", dirty = false, busy = false;
+const pend = new Map(), blobs = new Map();
+const srcOf = p => blobs.get(p) || p;
+function markDirty(){ dirty = true; syncBar(); }
+function syncBar(){
+  $("#dirtyBadge").hidden = !dirty;
+  $("#publishBtn").disabled = !dirty || busy;
+  $("#discardBtn").disabled = !dirty || busy;
+  $("#appTitle").textContent = "Ադմին · " + (C?.brand || "");
+}
+function setPath(obj, path, val){
+  const k = path.split("."); let o = obj;
+  for(let i = 0; i < k.length - 1; i++) o = o[k[i]];
+  o[k[k.length - 1]] = val;
+}
+function refsOf(c){
+  const s = new Set([c.hero.src, c.hero.poster, c.workshop.before, c.workshop.after,
+    ...c.categories.map(x => x.cover), ...c.works.map(x => x.src), ...c.videos.flatMap(v => [v.src, v.poster])]);
+  s.delete(undefined); s.delete(""); return s;
+}
+
+/* ---- Media preparation ---- */
+function stage(blob, ext){
+  const p = `media/u/${Date.now().toString(36)}${Math.random().toString(36).slice(2,6)}.${ext}`;
+  pend.set(p, blob); blobs.set(p, URL.createObjectURL(blob)); return p;
+}
+async function prepImage(file){
+  if(!file.type.startsWith("image/")) throw new Error("Ընտրեք նկար (JPG, PNG կամ WEBP)։");
+  let bmp;
+  try{ bmp = await createImageBitmap(file, {imageOrientation:"from-image"}); }
+  catch(e){ throw new Error("Այս նկարը չի բացվում (օրինակ՝ HEIC ձևաչափ)։ Պահպանեք այն JPG ձևաչափով։"); }
+  const s = Math.min(1, IMG_MAX / Math.max(bmp.width, bmp.height));
+  const w = Math.round(bmp.width * s), h = Math.round(bmp.height * s);
+  const cv = document.createElement("canvas"); cv.width = w; cv.height = h;
+  cv.getContext("2d").drawImage(bmp, 0, 0, w, h);
+  const blob = await new Promise(r => cv.toBlob(r, "image/jpeg", 0.82));
+  return {path:stage(blob, "jpg"), w, h};
+}
+async function prepVideo(file){
+  if(!file.type.startsWith("video/")) throw new Error("Ընտրեք տեսանյութ (MP4)։");
+  if(file.size > VIDEO_MAX_MB * 1048576) throw new Error(`Տեսանյութը ${Math.round(file.size/1048576)} ՄԲ է։ Առավելագույնը ${VIDEO_MAX_MB} ՄԲ։ Սեղմեք այն (օրինակ՝ ուղարկեք ինքներդ ձեզ Telegram-ով և պահպանեք)։`);
+  const v = document.createElement("video");
+  v.muted = true; v.playsInline = true; v.preload = "auto"; v.src = URL.createObjectURL(file);
+  await new Promise((res, rej) => { v.onloadeddata = res; v.onerror = () => rej(new Error("Այս տեսանյութը չի բացվում բրաուզերում։ Օգտագործեք MP4 ձևաչափ։")); });
+  v.currentTime = Math.min(1, (v.duration || 3) / 3);
+  await new Promise(res => { v.onseeked = res; setTimeout(res, 3000); });
+  const s = Math.min(1, 960 / Math.max(v.videoWidth, v.videoHeight));
+  const cv = document.createElement("canvas"); cv.width = Math.round(v.videoWidth * s); cv.height = Math.round(v.videoHeight * s);
+  cv.getContext("2d").drawImage(v, 0, 0, cv.width, cv.height);
+  const posterBlob = await new Promise(r => cv.toBlob(r, "image/jpeg", 0.8));
+  const ext = (file.name.split(".").pop() || "mp4").toLowerCase().replace(/[^a-z0-9]/g, "") || "mp4";
+  return {src:stage(file, ext), poster:stage(posterBlob, "jpg"), orient: v.videoWidth >= v.videoHeight ? "h" : "v"};
+}
+
+/* ---- Rendering ---- */
+const TABS = [["works","Աշխատանքներ"],["cats","Բաժիններ"],["videos","Տեսանյութեր"],["main","Գլխավոր և կոնտակտներ"],["texts","Տեքստեր"],["settings","Կարգավորումներ"]];
+const SECTION = {hero:"Գլխավոր", make:"Ինչ ենք պատրաստում", works:"Աշխատանքներ", workshop:"Արտադրամաս", videos:"Տեսանյութեր", process:"Ինչպես ենք աշխատում", materials:"Նյութեր", form:"Հայտի ձև", contact:"Կապ", footer:"Ներքևի մաս"};
+const FIELD = {eyebrow:"փոքր վերնագիր", title:"վերնագիր", accent:"ընդգծված բառ", lede:"նկարագրություն", text:"տեքստ", badge:"նշան նկարի վրա", badge_sub:"նշանի ենթատեքստ", before:"ձախ նկարի պիտակ", after:"աջ նկարի պիտակ", about:"տեքստ"};
+function textLabel(k){ const i = k.indexOf("_"); const sec = k.slice(0, i), f = k.slice(i + 1); return (SECTION[sec] || sec) + " · " + (FIELD[f] || f); }
+const isLong = k => /_(text|lede|about)$/.test(k);
+
+function moveBtns(list, i, n){
+  return `<button class="ib" type="button" data-move="${list}:${i}:-1" aria-label="Տեղափոխել վեր" ${i === 0 ? "disabled" : ""}>↑</button>
+          <button class="ib" type="button" data-move="${list}:${i}:1" aria-label="Տեղափոխել վար" ${i === n - 1 ? "disabled" : ""}>↓</button>`;
+}
+const delBtn = (list, i, label = "Ջնջել") => `<button class="btn sm danger" type="button" data-del="${list}:${i}">${label}</button>`;
+const fileBtn = (target, accept, label) => `<label class="btn sm ghost">${label}<input type="file" accept="${accept}" hidden data-replace="${target}"></label>`;
+const newTag = p => pend.has(p) ? '<span class="new">Նոր</span>' : "";
+
+function renderTabs(){
+  $("#tabs").innerHTML = TABS.map(([id, name]) => `<button class="tab" type="button" role="tab" data-tab="${id}" aria-selected="${tab === id}">${name}</button>`).join("");
+}
+function renderPanel(){
+  const R = {works:rWorks, cats:rCats, videos:rVideos, main:rMain, texts:rTexts, settings:rSettings};
+  $("#panel").innerHTML = R[tab]();
+  syncBar();
+}
+function rWorks(){
+  const n = C.works.length;
+  return `<div class="bar2"><label class="btn">+ Ավելացնել նկարներ<input type="file" id="addWorks" accept="image/*" multiple hidden></label>
+    <span class="muted">${n} նկար։ Հերթականությունը նույնն է, ինչ կայքում։</span></div>
+  <div class="grid">${C.works.map((w, i) => `<div class="card">
+    <div class="thumb"><img src="${esc(srcOf(w.src))}" alt="" loading="lazy">${newTag(w.src)}</div>
+    <label class="fl">Նկարագրություն<textarea rows="2" data-bind="works.${i}.caption">${esc(w.caption)}</textarea></label>
+    <div class="checks">${C.categories.map(c => `<label class="ck"><input type="checkbox" data-wcat="${i}" value="${esc(c.id)}" ${w.cats.includes(c.id) ? "checked" : ""}>${esc(c.name)}</label>`).join("")}</div>
+    <div class="acts">${moveBtns("works", i, n)}${fileBtn("works:" + i, "image/*", "Փոխել")}${delBtn("works", i)}</div>
+  </div>`).join("")}</div>`;
+}
+function rCats(){
+  const n = C.categories.length;
+  const opts = cur => {
+    const inWorks = C.works.some(w => w.src === cur);
+    return (inWorks ? "" : `<option value="${esc(cur)}" selected>Ներկայիս նկարը</option>`) +
+      C.works.map(w => `<option value="${esc(w.src)}" ${w.src === cur ? "selected" : ""}>${esc((w.caption || w.src).slice(0, 48))}</option>`).join("");
+  };
+  return `<div class="bar2"><button class="btn" type="button" data-add="categories">+ Նոր բաժին</button>
+    <span class="muted">Բաժինները ցուցադրվում են «Ինչ ենք պատրաստում» մասում և որպես ֆիլտրեր։</span></div>
+  <div class="grid">${C.categories.map((c, i) => `<div class="card">
+    <div class="thumb"><img src="${esc(srcOf(c.cover))}" alt="" loading="lazy">${newTag(c.cover)}</div>
+    <label class="fl">Անուն<input data-bind="categories.${i}.name" value="${esc(c.name)}"></label>
+    <label class="fl">Շապիկի նկար<select data-cover="${i}">${opts(c.cover)}</select></label>
+    <div class="muted" style="font-size:13px">${C.works.filter(w => w.cats.includes(c.id)).length} աշխատանք</div>
+    <div class="acts">${moveBtns("categories", i, n)}${fileBtn("categories:" + i, "image/*", "Վերբեռնել շապիկ")}${delBtn("categories", i)}</div>
+  </div>`).join("")}</div>`;
+}
+function rVideos(){
+  const n = C.videos.length;
+  return `<div class="bar2"><label class="btn">+ Ավելացնել տեսանյութ<input type="file" id="addVideo" accept="video/*" hidden></label>
+    <span class="muted">MP4, մինչև ${VIDEO_MAX_MB} ՄԲ։ Շապիկը ստեղծվում է ավտոմատ։</span></div>
+  <div class="grid">${C.videos.map((v, i) => `<div class="card">
+    <div class="thumb"><video src="${esc(srcOf(v.src))}" poster="${esc(srcOf(v.poster))}" controls preload="none" playsinline></video>${newTag(v.src)}</div>
+    <label class="fl">Վերնագիր<input data-bind="videos.${i}.title" value="${esc(v.title)}"></label>
+    <label class="fl">Ենթատեքստ<input data-bind="videos.${i}.sub" value="${esc(v.sub)}"></label>
+    <label class="fl">Ձև<select data-bind="videos.${i}.orient"><option value="h" ${v.orient === "h" ? "selected" : ""}>Հորիզոնական</option><option value="v" ${v.orient !== "h" ? "selected" : ""}>Ուղղահայաց</option></select></label>
+    <div class="acts">${moveBtns("videos", i, n)}${fileBtn(`videos:${i}:src`, "video/*", "Փոխել")}${fileBtn(`videos:${i}:poster`, "image/*", "Շապիկ")}${delBtn("videos", i)}</div>
+  </div>`).join("")}</div>`;
+}
+function rMain(){
+  const h = C.hero;
+  const heroPrev = h.type === "image" ? `<img src="${esc(srcOf(h.src))}" alt="">` : `<video src="${esc(srcOf(h.src))}" poster="${esc(srcOf(h.poster))}" muted loop autoplay playsinline></video>`;
+  return `<div class="sec"><h2>Բրենդ</h2>
+    <label class="fl">Ընկերության անունը<input data-bind="brand" value="${esc(C.brand)}"></label></div>
+  <div class="sec"><h2>Գլխավոր նկար կամ տեսանյութ</h2>
+    <div class="two"><div class="prev">${heroPrev}</div>
+    <div class="list"><p class="muted" style="margin:0">Նկար կամ կարճ տեսանյութ առանց ձայնի (մինչև 10 վրկ)։ Տեքստերը փոխվում են «Տեքստեր» բաժնում։</p>
+    <div>${fileBtn("hero", "image/*,video/*", "Փոխել")}</div></div></div></div>
+  <div class="sec"><h2>Արտադրամասից՝ ձեր տուն</h2>
+    <div class="two">
+      <div class="list"><div class="prev"><img src="${esc(srcOf(C.workshop.before))}" alt=""></div><div>${fileBtn("workshop:before", "image/*", "Փոխել ձախ նկարը")}</div></div>
+      <div class="list"><div class="prev"><img src="${esc(srcOf(C.workshop.after))}" alt=""></div><div>${fileBtn("workshop:after", "image/*", "Փոխել աջ նկարը")}</div></div>
+    </div></div>
+  <div class="sec"><h2>Կոնտակտներ</h2>
+    <label class="fl">Կոնտակտային անձ<input data-bind="contacts.person" value="${esc(C.contacts.person)}"></label>
+    <div class="list">${C.contacts.phones.map((p, i) => `<div class="row"><label class="fl" style="flex:1">Հեռախոս ${i + 1}<input type="tel" data-bind="contacts.phones.${i}" value="${esc(p)}" placeholder="+374…"></label>
+      <button class="btn sm danger" type="button" data-del="phones:${i}" style="align-self:flex-end">Հեռացնել</button></div>`).join("")}</div>
+    <div><button class="btn ghost sm" type="button" data-add="phones">+ Ավելացնել հեռախոս</button></div></div>`;
+}
+function rTexts(){
+  let last = "", html = '<div class="sec">';
+  for(const k of Object.keys(C.texts)){
+    const sec = k.slice(0, k.indexOf("_"));
+    if(sec !== last){ if(last) html += '</div><div class="sec">'; html += `<h2>${esc(SECTION[sec] || sec)}</h2>`; last = sec; }
+    html += isLong(k)
+      ? `<label class="fl">${esc(textLabel(k))}<textarea rows="3" data-bind="texts.${k}">${esc(C.texts[k])}</textarea></label>`
+      : `<label class="fl">${esc(textLabel(k))}<input data-bind="texts.${k}" value="${esc(C.texts[k])}"></label>`;
+  }
+  html += `</div><div class="sec"><h2>Առավելություններ (4 բլոկ)</h2><div class="list">${C.perks.map((p, i) => `<div class="item">
+      <input data-bind="perks.${i}.title" value="${esc(p.title)}" aria-label="Վերնագիր"><input data-bind="perks.${i}.text" value="${esc(p.text)}" aria-label="Տեքստ"><span></span></div>`).join("")}</div></div>
+    <div class="sec"><h2>Ինչպես ենք աշխատում · քայլեր</h2><div class="list">${C.steps.map((s, i) => `<div class="item">
+      <input data-bind="steps.${i}.title" value="${esc(s.title)}" aria-label="Քայլի անուն"><textarea rows="2" data-bind="steps.${i}.text" aria-label="Քայլի տեքստ">${esc(s.text)}</textarea>
+      <div class="row">${moveBtns("steps", i, C.steps.length)}${delBtn("steps", i, "×")}</div></div>`).join("")}</div>
+      <div><button class="btn ghost sm" type="button" data-add="steps">+ Ավելացնել քայլ</button></div></div>`;
+  return html;
+}
+function rSettings(){
+  return `<div class="sec"><h2>Փոխել գաղտնաբառը</h2>
+    <form id="pwForm" class="list" style="max-width:420px">
+      <label class="fl">Նոր գաղտնաբառ (առնվազն 10 նիշ)<input id="newPw1" type="password" autocomplete="new-password" required></label>
+      <label class="fl">Կրկնեք<input id="newPw2" type="password" autocomplete="new-password" required></label>
+      <div><button class="btn" type="submit">Պահպանել գաղտնաբառը</button></div>
+    </form></div>
+  <div class="sec"><h2>Այլ</h2>
+    <p class="muted" style="margin:0">Ֆայլերը պահվում են <a href="https://github.com/${OWNER}/${REPO}" target="_blank" rel="noopener">github.com/${OWNER}/${REPO}</a> ռեպոզիտորիայում։ Հրապարակելուց հետո կայքը թարմանում է 1–2 րոպեում։</p>
+    <div><button class="btn ghost" type="button" id="logoutBtn">Ելք</button></div></div>`;
+}
+
+/* ---- Actions ---- */
+const LISTS = {works:() => C.works, categories:() => C.categories, videos:() => C.videos, steps:() => C.steps, phones:() => C.contacts.phones};
+
+async function withBusy(label, fn){
+  if(busy) return; busy = true; syncBar(); toast(label);
+  try{ await fn(); markDirty(); renderPanel(); }
+  catch(e){ toast(e.message, true); }
+  finally{ busy = false; syncBar(); }
+}
+async function onReplace(input){
+  const file = input.files[0]; if(!file) return;
+  const [kind, a, b] = input.dataset.replace.split(":");
+  await withBusy("Մշակվում է…", async () => {
+    if(kind === "works"){ const r = await prepImage(file); Object.assign(C.works[+a], {src:r.path, w:r.w, h:r.h}); }
+    else if(kind === "categories"){ C.categories[+a].cover = (await prepImage(file)).path; }
+    else if(kind === "videos" && b === "src"){ const r = await prepVideo(file); Object.assign(C.videos[+a], {src:r.src, poster:r.poster, orient:r.orient}); }
+    else if(kind === "videos" && b === "poster"){ C.videos[+a].poster = (await prepImage(file)).path; }
+    else if(kind === "hero"){
+      if(file.type.startsWith("video/")){ const r = await prepVideo(file); C.hero = {type:"video", src:r.src, poster:r.poster}; }
+      else C.hero = {type:"image", src:(await prepImage(file)).path};
+    }
+    else if(kind === "workshop"){ C.workshop[a] = (await prepImage(file)).path; }
+    toast("Պատրաստ է։ Չմոռանաք սեղմել «Հրապարակել»։");
+  });
+}
+
+document.addEventListener("input", e => {
+  const el = e.target;
+  if(el.dataset.bind){ setPath(C, el.dataset.bind, el.value); markDirty(); if(el.dataset.bind === "brand") syncBar(); }
+});
+document.addEventListener("change", async e => {
+  const el = e.target;
+  if(el.dataset.wcat !== undefined){
+    const w = C.works[+el.dataset.wcat];
+    w.cats = el.checked ? [...new Set([...w.cats, el.value])] : w.cats.filter(x => x !== el.value);
+    markDirty(); return;
+  }
+  if(el.dataset.cover !== undefined){ C.categories[+el.dataset.cover].cover = el.value; markDirty(); renderPanel(); return; }
+  if(el.dataset.replace){ await onReplace(el); return; }
+  if(el.id === "addWorks"){
+    const files = [...el.files];
+    await withBusy(`Մշակվում է ${files.length} նկար…`, async () => {
+      for(const f of files.reverse()){ const r = await prepImage(f); C.works.unshift({src:r.path, w:r.w, h:r.h, cats:[], caption:""}); }
+      toast(`Ավելացվեց ${files.length} նկար։ Ընտրեք բաժինը, գրեք նկարագրությունը և հրապարակեք։`);
+    });
+    return;
+  }
+  if(el.id === "addVideo" && el.files[0]){
+    const f = el.files[0];
+    await withBusy("Մշակվում է տեսանյութը…", async () => {
+      const r = await prepVideo(f);
+      C.videos.unshift({src:r.src, poster:r.poster, orient:r.orient, title:"", sub:""});
+      toast("Տեսանյութն ավելացվեց։ Գրեք վերնագիրը և հրապարակեք։");
+    });
+  }
+});
+document.addEventListener("click", e => {
+  const g = s => e.target.closest(s);
+  if(g("[data-tab]")){ tab = g("[data-tab]").dataset.tab; renderTabs(); renderPanel(); return; }
+  if(g("[data-move]")){
+    const [list, i, d] = g("[data-move]").dataset.move.split(":"); const arr = LISTS[list](); const a = +i, b = a + +d;
+    if(b < 0 || b >= arr.length) return;
+    [arr[a], arr[b]] = [arr[b], arr[a]]; markDirty(); renderPanel(); return;
+  }
+  if(g("[data-del]")){
+    const btn = g("[data-del]"); const [list, i] = btn.dataset.del.split(":");
+    if(list !== "phones" && btn.dataset.armed !== "1"){
+      btn.dataset.armed = "1"; const old = btn.textContent; btn.textContent = "Հաստատե՞լ";
+      setTimeout(() => { if(btn.isConnected){ btn.dataset.armed = ""; btn.textContent = old; } }, 3500); return;
+    }
+    const arr = LISTS[list](); const removed = arr.splice(+i, 1)[0];
+    if(list === "categories") C.works.forEach(w => w.cats = w.cats.filter(x => x !== removed.id));
+    markDirty(); renderPanel(); return;
+  }
+  if(g("[data-add]")){
+    const k = g("[data-add]").dataset.add;
+    if(k === "categories") C.categories.push({id:"c" + Date.now().toString(36), name:"Նոր բաժին", cover:C.works[0]?.src || ""});
+    if(k === "steps") C.steps.push({title:"Նոր քայլ", text:""});
+    if(k === "phones") C.contacts.phones.push("");
+    markDirty(); renderPanel(); return;
+  }
+  if(e.target.id === "logoutBtn"){ if(dirty){ toast("Նախ հրապարակեք կամ չեղարկեք փոփոխությունները։", true); return; } ss.del("adm.t"); location.reload(); }
+});
+document.addEventListener("submit", async e => {
+  if(e.target.id !== "pwForm") return;
+  e.preventDefault();
+  const p1 = $("#newPw1").value, p2 = $("#newPw2").value;
+  if(p1.length < 10) return toast("Գաղտնաբառը պետք է լինի առնվազն 10 նիշ։", true);
+  if(p1 !== p2) return toast("Գաղտնաբառերը չեն համընկնում։", true);
+  try{ await putFile("vault.json", utf8ToB64(JSON.stringify(await seal(TOKEN, p1))), "Admin: change password", await getSha("vault.json")); e.target.reset(); toast("Գաղտնաբառը փոխվեց։"); }
+  catch(err){ toast(err.message, true); }
+});
+
+$("#discardBtn").addEventListener("click", () => { C = clone(ORIG); pend.clear(); dirty = false; renderPanel(); toast("Փոփոխությունները չեղարկվեցին։"); });
+$("#publishBtn").addEventListener("click", publish);
+
+function log(line, cls){ const box = $("#logBox"); if(box){ box.insertAdjacentHTML("beforeend", `<div class="${cls || ""}">${esc(line)}</div>`); box.scrollTop = box.scrollHeight; } }
+async function publish(){
+  if(busy || !dirty) return;
+  busy = true; syncBar();
+  $("#logHost").innerHTML = `<div class="log" id="logBox" role="status"><b>Հրապարակում…</b></div>`;
+  try{
+    const refs = refsOf(C);
+    for(const [p, blob] of pend){
+      if(!refs.has(p)) continue;
+      log("Վերբեռնում՝ " + p + ` (${Math.max(1, Math.round(blob.size / 1024))} ԿԲ)`);
+      await putFile(p, await blobToB64(blob), "Admin: add " + p);
+      pend.delete(p);
+    }
+    log("Պահպանում՝ բովանդակություն");
+    await putFile("content.json", utf8ToB64(JSON.stringify(C, null, 2) + "\n"), "Admin: update content", await getSha("content.json"));
+    for(const p of refsOf(ORIG)){
+      if(!refs.has(p) && p.startsWith("media/")){ log("Ջնջում՝ " + p); await delFile(p, "Admin: remove " + p); }
+    }
+    ORIG = clone(C); pend.clear(); dirty = false;
+    log("Հրապարակված է։ Կայքը կթարմանա 1–2 րոպեում։", "ok");
+    setTimeout(() => $("#logHost").innerHTML = "", 8000);
+  }catch(e){
+    log(e.message, "bad");
+    log("Ոչինչ չի կորել. փոփոխությունները մնացել են այստեղ։ Փորձեք կրկին։");
+  }finally{ busy = false; syncBar(); renderPanel(); }
+}
+window.addEventListener("beforeunload", e => { if(dirty){ e.preventDefault(); e.returnValue = ""; } });
+
+/* ---- Auth flow ---- */
+async function loadContent(){
+  const r = await gh(cpath("content.json") + "?ref=" + BRANCH);
+  if(!r.ok) throw apiErr(r);
+  const j = await r.json();
+  C = JSON.parse(dec.decode(b64ToBytes(j.content.replace(/\n/g, ""))));
+  ORIG = clone(C);
+}
+async function enterApp(){
+  await loadContent();
+  show("scrApp"); renderTabs(); renderPanel();
+}
+$("#loginForm").addEventListener("submit", async e => {
+  e.preventDefault(); $("#loginErr").textContent = ""; $("#loginBtn").disabled = true;
+  try{
+    try{ TOKEN = await unseal(VAULT, $("#loginPw").value); }
+    catch(err){ throw new Error("Սխալ գաղտնաբառ։"); }
+    await enterApp(); ss.set("adm.t", TOKEN);
+  }catch(err){ TOKEN = null; $("#loginErr").textContent = err.message; }
+  finally{ $("#loginBtn").disabled = false; }
+});
+$("#setupForm").addEventListener("submit", async e => {
+  e.preventDefault(); $("#setupErr").textContent = "";
+  const t = $("#setupToken").value.trim(), p1 = $("#setupPw1").value, p2 = $("#setupPw2").value;
+  if(p1.length < 10){ $("#setupErr").textContent = "Գաղտնաբառը պետք է լինի առնվազն 10 նիշ։"; return; }
+  if(p1 !== p2){ $("#setupErr").textContent = "Գաղտնաբառերը չեն համընկնում։"; return; }
+  $("#setupBtn").disabled = true;
+  try{
+    TOKEN = t;
+    const sha = await getSha("vault.json");
+    VAULT = await seal(t, p1);
+    await putFile("vault.json", utf8ToB64(JSON.stringify(VAULT)), "Admin: set password", sha);
+    await enterApp(); ss.set("adm.t", TOKEN);
+    toast("Ադմինը կարգավորված է։ Հաջորդ անգամ մտեք միայն գաղտնաբառով։");
+  }catch(err){ TOKEN = null; $("#setupErr").textContent = err.message; }
+  finally{ $("#setupBtn").disabled = false; }
+});
+$("#toSetup").addEventListener("click", () => show("scrSetup"));
+$("#toLogin").addEventListener("click", () => VAULT ? show("scrLogin") : null);
+
+(async function boot(){
+  const t = ss.get("adm.t");
+  if(t){ TOKEN = t; try{ await enterApp(); return; }catch(e){ TOKEN = null; ss.del("adm.t"); } }
+  try{
+    const r = await fetch("vault.json?t=" + Date.now(), {cache:"no-store"});
+    VAULT = r.ok ? await r.json() : null;
+  }catch(e){ VAULT = null; }
+  $("#toLogin").hidden = !VAULT;
+  show(VAULT ? "scrLogin" : "scrSetup");
+  (VAULT ? $("#loginPw") : $("#setupToken")).focus();
+})();
+</script>
+</body>
+</html>

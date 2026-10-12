@@ -1,0 +1,87 @@
+{
+  "brand": "ՎՀ Կահույք",
+  "contacts": {
+    "person": "Վահագն",
+    "phones": ["+37494759466", "+37491759466"]
+  },
+  "hero": { "type": "video", "src": "media/hero-loop.mp4", "poster": "media/hero-loop.jpg" },
+  "workshop": { "before": "media/commode-workshop.jpg", "after": "media/commode.jpg" },
+  "texts": {
+    "hero_eyebrow": "Պատվերով կահույք",
+    "hero_title": "Կահույք, որով տունը դառնում է",
+    "hero_accent": "օջախ",
+    "hero_lede": "Խոհանոցներ, զգեստապահարաններ, ննջասենյակներ և հյուրասենյակի պատեր՝ ձեր չափսերով։ Պատրաստում ենք մեր արտադրամասում և տեղադրում ենք ինքներս։",
+    "hero_badge": "Խոհանոց՝ մարմարանման սեղանի երեսով",
+    "hero_badge_sub": "Մեր վերջին աշխատանքներից",
+    "make_eyebrow": "Ինչ ենք պատրաստում",
+    "make_title": "Ամբողջ տան համար",
+    "make_text": "Ընտրեք ուղղությունը, և ստորև կտեսնեք միայն դրա աշխատանքները։",
+    "works_eyebrow": "Պորտֆոլիո",
+    "works_title": "Մեր աշխատանքները",
+    "works_text": "Իրական պատվերներ՝ մեր հաճախորդների տներում։ Սեղմեք լուսանկարի վրա՝ մեծացնելու համար։",
+    "workshop_eyebrow": "Արտադրամասից՝ ձեր տուն",
+    "workshop_title": "Ամեն իր անցնում է մեր վարպետների ձեռքով",
+    "workshop_text": "Կահույքը պատրաստում ենք մեր արտադրամասում՝ ձեր չափսերով։ Այստեղ հավաքում և ստուգում ենք յուրաքանչյուր իր, հետո բերում ու տեղադրում ձեր տանը։ Այս կոմոդը ձախ նկարում դեռ արտադրամասում է, աջում՝ արդեն հաճախորդի հյուրասենյակում։",
+    "workshop_before": "Արտադրամասում",
+    "workshop_after": "Ձեր տանը",
+    "videos_eyebrow": "Տեսանյութեր",
+    "videos_title": "Տեսեք ամեն մանրուք",
+    "videos_text": "Տեսանյութերում երևում է, թե ինչպես են բացվում դռները, ինչպես է ընկնում լույսը և ինչպես է կահույքը նստում տարածքում։",
+    "process_eyebrow": "Ինչպես ենք աշխատում",
+    "process_title": "Ձեր չափսերով՝ չորս քայլով",
+    "process_text": "Խոհանոց, զգեստապահարան կամ ամբողջ սենյակ։ Պատրաստում ենք ըստ ձեր տարածքի և ճաշակի։",
+    "materials_eyebrow": "Նյութեր",
+    "materials_title": "Նյութեր և երանգներ",
+    "materials_text": "Այն, ինչ տեսնում եք մեր աշխատանքներում։ Նմուշները կարող ենք բերել չափագրման ժամանակ։",
+    "form_eyebrow": "Խորհրդատվություն",
+    "form_title": "Պատմեք, ինչ եք ուզում",
+    "contact_eyebrow": "Կապ",
+    "contact_title": "Զանգահարեք մեզ",
+    "contact_text": "Զանգահարեք, և Վահագնը կպատասխանի բոլոր հարցերին՝ չափսերից ու նյութերից մինչև գինը և ժամկետները։",
+    "footer_about": "Պատվերով կահույք ձեր տան համար՝ չափագրումից մինչև տեղադրում։"
+  },
+  "perks": [
+    { "title": "Չափագրում", "text": "Վարպետը գալիս է ձեր տուն" },
+    { "title": "Սեփական արտադրամաս", "text": "Ամեն ինչ պատրաստում ենք ինքներս" },
+    { "title": "Առաքում և տեղադրում", "text": "Բերում և հավաքում ենք տեղում" },
+    { "title": "Երաշխիք", "text": "Մեր պատրաստած ամեն իրի համար" }
+  ],
+  "steps": [
+    { "title": "Չափագրում", "text": "Վարպետը գալիս է ձեր տուն և ճշգրիտ չափում տարածքը։" },
+    { "title": "Նախագիծ", "text": "Պատրաստում ենք նախագիծ, ընտրում նյութերն ու գույները։" },
+    { "title": "Արտադրություն", "text": "Կահույքը պատրաստվում է մեր արտադրամասում։" },
+    { "title": "Առաքում և տեղադրում", "text": "Բերում ենք, հավաքում և տեղադրում ենք տեղում։" }
+  ],
+  "categories": [
+    { "id": "kitchen",  "name": "Խոհանոցներ",            "cover": "media/kitchen-grey-1.jpg" },
+    { "id": "wardrobe", "name": "Զգեստապահարաններ",      "cover": "media/bedroom-wardrobe-1.jpg" },
+    { "id": "bedroom",  "name": "Ննջասենյակներ",         "cover": "media/bed-diamond.jpg" },
+    { "id": "living",   "name": "Հյուրասենյակ",          "cover": "media/tv-wall-1.jpg" },
+    { "id": "cabinet",  "name": "Կոմոդներ և վիտրինաներ", "cover": "media/vitrine.jpg" },
+    { "id": "hall",     "name": "Նախասենյակ",            "cover": "media/hall-wardrobe.jpg" }
+  ],
+  "works": [
+    { "src": "media/kitchen-loft-1.jpg",     "w": 960,  "h": 1280, "cats": ["kitchen"],            "caption": "Խոհանոց՝ մարմարանման սեղանի երեսով և ձողավոր բար-սեղանով" },
+    { "src": "media/kitchen-grey-1.jpg",     "w": 1280, "h": 576,  "cats": ["kitchen"],            "caption": "Անկյունային խոհանոց՝ դասական ֆրեզերված ճակատներով" },
+    { "src": "media/bed-diamond.jpg",        "w": 576,  "h": 1280, "cats": ["bedroom"],            "caption": "Մահճակալ՝ բարձր թավշյա գլխամասով" },
+    { "src": "media/tv-wall-1.jpg",          "w": 1280, "h": 576,  "cats": ["living"],             "caption": "Հյուրասենյակի պատ՝ ֆրեզերված ճակատներով և ապակե դարակներով" },
+    { "src": "media/bedroom-wardrobe-1.jpg", "w": 1280, "h": 576,  "cats": ["bedroom","wardrobe"], "caption": "Ննջասենյակ՝ զգեստապահարան ապակե դռներով և զարդասեղան" },
+    { "src": "media/vitrine.jpg",            "w": 960,  "h": 1280, "cats": ["cabinet","living"],   "caption": "Վիտրինա՝ մգեցված ապակիով և սև շրջանակով" },
+    { "src": "media/headboard.jpg",          "w": 576,  "h": 1280, "cats": ["bedroom"],            "caption": "Թավշյա պանելներ՝ ոսկեգույն պրոֆիլով" },
+    { "src": "media/hall-wardrobe.jpg",      "w": 960,  "h": 1280, "cats": ["hall","wardrobe"],    "caption": "Նախասենյակի պահարան՝ ֆրեզերված ճակատներով" },
+    { "src": "media/kitchen-grey-2.jpg",     "w": 1280, "h": 575,  "cats": ["kitchen"],            "caption": "Անկյունային խոհանոց՝ ապակե դռներով վերին պահարաններ" },
+    { "src": "media/commode.jpg",            "w": 960,  "h": 1280, "cats": ["cabinet","living"],   "caption": "Կոմոդ՝ ոսկեգույն բռնակներով և ոտքերով" },
+    { "src": "media/bed-velvet.jpg",         "w": 960,  "h": 1280, "cats": ["bedroom"],            "caption": "Մահճակալ՝ թավշյա գլխամասով և գիշերային պահարաններով" },
+    { "src": "media/tv-wall-2.jpg",          "w": 1280, "h": 576,  "cats": ["living"],             "caption": "Հյուրասենյակի պատ՝ կախովի ստորին պահարանով" },
+    { "src": "media/kitchen-loft-2.jpg",     "w": 960,  "h": 1280, "cats": ["kitchen"],            "caption": "Նույն խոհանոցը՝ ամբողջ տեսքով" },
+    { "src": "media/bedroom-wardrobe-2.jpg", "w": 1280, "h": 576,  "cats": ["bedroom","wardrobe"], "caption": "Զգեստապահարան՝ սև բռնակներով և մգեցված ապակիով" },
+    { "src": "media/kitchen-white.jpg",      "w": 576,  "h": 1280, "cats": ["kitchen"],            "caption": "Սպիտակ խոհանոց՝ սև մարմարանման սյունով, տեղադրման փուլում" },
+    { "src": "media/kitchen-grey-3.jpg",     "w": 1280, "h": 576,  "cats": ["kitchen"],            "caption": "Անկյունային խոհանոց՝ մարմարանման պատով" },
+    { "src": "media/commode-workshop.jpg",   "w": 1280, "h": 576,  "cats": ["cabinet"],            "caption": "Կոմոդը մեր արտադրամասում՝ նախքան առաքումը" }
+  ],
+  "videos": [
+    { "src": "media/video-kitchen-white.mp4", "poster": "media/video-kitchen-white.jpg", "orient": "h", "title": "Սպիտակ խոհանոց՝ մարմարանման պատով", "sub": "Տեղադրման ավարտին · 10 վրկ" },
+    { "src": "media/video-overview.mp4",      "poster": "media/video-overview.jpg",      "orient": "v", "title": "Մեր աշխատանքներից",                 "sub": "Խոհանոց, վիտրինա, պահարան · 24 վրկ" },
+    { "src": "media/video-walkthrough.mp4",   "poster": "media/video-walkthrough.jpg",   "orient": "v", "title": "Ամբողջ բնակարանը",                  "sub": "Խոհանոցից մինչև նախասենյակ · 1 րոպե" }
+  ]
+}
