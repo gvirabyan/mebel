@@ -1,0 +1,520 @@
+<!doctype html>
+<html lang="hy">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Պատվերով կահույք՝ խոհանոցներ, զգեստապահարաններ, ննջասենյակներ և հյուրասենյակի պատեր։ Զանգահարեք՝ +374 94 75 94 66">
+<meta property="og:title" content="Ատաղձ կահույք">
+<meta property="og:description" content="Պատվերով կահույք ձեր չափսերով՝ չափագրումից մինչև տեղադրում։">
+<meta property="og:image" content="media/kitchen-loft-1.jpg">
+<meta name="theme-color" content="#23493C">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%2323493C'/%3E%3Cpath d='M7 16 16 8l9 8v10H7z' fill='none' stroke='%23F3F4F1' stroke-width='2' stroke-linejoin='round'/%3E%3C/svg%3E">
+<style>:root{color-scheme:light}body{margin:0}[hidden]{display:none!important}</style>
+<title>Ատաղձ կահույք</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+Armenian:wdth,wght@62.5..100,300..800&family=Noto+Sans+Armenian:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: sticky bar → split hero (headline + looping kitchen video) → service strip → "what we make" photo tiles → masonry portfolio + lightbox → workshop-to-home pair → videos → process steps → materials → consultation + contacts → footer. */
+:root{
+  --bg:#F3F4F1; --surface:#FFFFFF; --surface-2:#E8EAE5; --ink:#1A1D1A; --muted:#5E655F; --line:#D8DBD5;
+  --accent:#23493C; --accent-ink:#F3F4F1; --wood:#9C6B3F; --ph:#E2E5DF; --shadow:26 29 26;
+  --f-display:"Noto Serif Armenian", "Sylfaen", Georgia, serif;
+  --f-body:"Noto Sans Armenian", "Arial Unicode MS", system-ui, sans-serif;
+  --r:16px;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#121512; --surface:#1A1E1B; --surface-2:#232824; --ink:#ECEDE8; --muted:#A1A9A2; --line:#2C322D;
+  --accent:#8FC2A8; --accent-ink:#121512; --wood:#D49A62; --ph:#212622; --shadow:0 0 0; color-scheme:dark;
+}}
+:root[data-theme="dark"]{
+  --bg:#121512; --surface:#1A1E1B; --surface-2:#232824; --ink:#ECEDE8; --muted:#A1A9A2; --line:#2C322D;
+  --accent:#8FC2A8; --accent-ink:#121512; --wood:#D49A62; --ph:#212622; --shadow:0 0 0; color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font:400 15.5px/1.65 var(--f-body);-webkit-font-smoothing:antialiased}
+.wrap{max-width:1220px;margin:0 auto;padding-inline:clamp(16px,4vw,40px)}
+h1,h2,h3{font-family:var(--f-display);font-stretch:75%;text-wrap:balance;margin:0;line-height:1.08}
+h2{font-size:clamp(28px,3.6vw,44px);font-weight:700}
+button,input,select,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+a{color:inherit}
+img,video{display:block;max-width:100%}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:6px}
+.eyebrow{font-size:12.5px;font-weight:600;text-transform:uppercase;letter-spacing:.12em;color:var(--wood);margin:0 0 10px}
+.num{font-variant-numeric:tabular-nums}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:1.5px solid var(--accent);background:var(--accent);color:var(--accent-ink);padding:13px 22px;border-radius:999px;font-weight:600;text-decoration:none;white-space:nowrap;transition:transform .2s,filter .2s}
+.btn:hover{filter:brightness(1.1);transform:translateY(-1px)}
+.btn.ghost{background:transparent;color:var(--ink);border-color:var(--line)}
+.btn.ghost:hover{border-color:var(--ink)}
+.todo{border-bottom:1.5px dashed currentColor}
+
+/* Bar */
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:30;background:color-mix(in srgb,var(--bg) 85%,transparent);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.bar .wrap{display:flex;align-items:center;gap:16px;height:68px;position:relative}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;font-family:var(--f-display);font-stretch:75%;font-weight:800;font-size:24px;letter-spacing:.01em}
+.logo svg{width:30px;height:30px}
+.nav{display:flex;gap:4px;margin-left:auto}
+.nav a{text-decoration:none;color:var(--muted);font-weight:500;padding:8px 12px;border-radius:999px}
+.nav a:hover{color:var(--ink);background:var(--surface-2)}
+.tools{display:flex;gap:8px;margin-left:8px}
+.icon-btn{width:42px;height:42px;border-radius:999px;border:1px solid var(--line);background:var(--surface);display:grid;place-items:center}
+.icon-btn:hover{border-color:var(--ink)}
+.icon-btn svg{width:19px;height:19px;stroke:var(--ink);fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.burger{display:none}
+@media (max-width:960px){
+  .burger{display:grid}
+  .nav{display:none;position:absolute;top:68px;left:0;right:0;flex-direction:column;background:var(--surface);border-bottom:1px solid var(--line);padding:12px 16px 16px}
+  .nav.open{display:flex}
+  .tools{margin-left:auto}
+}
+
+/* Hero */
+.hero{padding-block:clamp(36px,6vw,72px) 0}
+.hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(28px,5vw,64px);align-items:center}
+.hero-grid>*{min-width:0}
+.hero h1{font-size:clamp(40px,6.4vw,84px);font-weight:800;letter-spacing:-.01em}
+.hero h1 span{color:var(--accent);font-weight:400;font-style:italic}
+.lede{font-size:17.5px;color:var(--muted);max-width:48ch;margin:22px 0 30px}
+.cta{display:flex;gap:12px;flex-wrap:wrap}
+.hero-media{position:relative;max-width:470px;justify-self:end;width:100%}
+.hero-media video{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:22px;background:var(--ph)}
+.float{position:absolute;left:-24px;bottom:28px;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:12px 16px;box-shadow:0 18px 40px -24px rgb(var(--shadow)/.6);max-width:240px}
+.float b{display:block;font-weight:600;line-height:1.35}
+.float small{color:var(--muted)}
+@media (max-width:880px){.hero-grid{grid-template-columns:1fr}.hero-media{justify-self:stretch;max-width:none}.float{left:12px}}
+
+.perks{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;margin-top:clamp(36px,5vw,56px)}
+.perks div{background:var(--surface);padding:20px 22px;display:flex;gap:14px;align-items:flex-start}
+.perks svg{flex:none;width:26px;height:26px;stroke:var(--accent);fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.perks b{display:block;font-weight:600}
+.perks small{color:var(--muted);font-size:13.5px;line-height:1.45;display:block}
+@media (max-width:880px){.perks{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:480px){.perks{grid-template-columns:1fr}}
+
+section{padding-block:clamp(56px,8vw,104px) 0}
+.head{display:flex;justify-content:space-between;align-items:end;gap:20px;flex-wrap:wrap;margin-bottom:28px}
+.head p{color:var(--muted);max-width:46ch;margin:0}
+
+/* Categories */
+.cats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.cat{position:relative;border:0;padding:0;background:var(--ph);border-radius:var(--r);overflow:hidden;aspect-ratio:4/3;text-align:left}
+.cat img{width:100%;height:100%;object-fit:cover;transition:transform .6s cubic-bezier(.2,.8,.2,1)}
+.cat:hover img{transform:scale(1.05)}
+.cat::after{content:"";position:absolute;inset:0;background:linear-gradient(transparent 45%,rgb(10 12 10/.72))}
+.cat .lbl{position:absolute;left:18px;right:18px;bottom:16px;z-index:1;display:flex;justify-content:space-between;align-items:end;gap:8px;color:#FFFFFF}
+.cat .lbl b{font-family:var(--f-display);font-stretch:75%;font-size:26px;font-weight:700;line-height:1.1}
+.cat .lbl span{font-size:13px;opacity:.85;white-space:nowrap}
+@media (max-width:880px){.cats{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:480px){.cats{grid-template-columns:1fr}}
+
+/* Portfolio */
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:24px}
+.chip{border:1.5px solid var(--line);background:transparent;padding:8px 15px;border-radius:999px;font-weight:500;font-size:14px}
+.chip:hover{border-color:var(--ink)}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.chip small{opacity:.6;margin-left:4px}
+.masonry{columns:3 280px;column-gap:16px}
+.shot{break-inside:avoid;margin:0 0 16px;border:0;padding:0;background:var(--ph);border-radius:14px;overflow:hidden;width:100%;display:block;position:relative;text-align:left}
+.shot img{width:100%;height:auto;transition:transform .6s cubic-bezier(.2,.8,.2,1)}
+.shot:hover img{transform:scale(1.03)}
+.shot figcaption{position:absolute;left:0;right:0;bottom:0;padding:28px 14px 12px;background:linear-gradient(transparent,rgb(10 12 10/.7));color:#FFFFFF;font-size:13.5px;line-height:1.35;opacity:0;transition:opacity .25s}
+.shot:hover figcaption,.shot:focus-visible figcaption{opacity:1}
+@media (hover:none){.shot figcaption{opacity:1}}
+
+/* Workshop pair */
+.pair{display:grid;grid-template-columns:1fr 1.5fr;gap:clamp(24px,4vw,56px);align-items:center}
+.pair>*{min-width:0}
+.pair p{color:var(--muted);max-width:44ch}
+.duo{display:grid;grid-template-columns:1.6fr 1fr;gap:12px;align-items:end}
+.duo figure{margin:0;position:relative}
+.duo img{width:100%;border-radius:14px;object-fit:cover}
+.duo figure:first-child img{aspect-ratio:16/10}
+.duo figure:last-child img{aspect-ratio:3/4}
+.duo figcaption{position:absolute;top:10px;left:10px;background:var(--surface);border-radius:999px;padding:3px 11px;font-size:12.5px;font-weight:600}
+.arrow{font-family:var(--f-display);font-stretch:75%;color:var(--wood);font-size:22px}
+@media (max-width:880px){.pair{grid-template-columns:1fr}}
+
+/* Videos */
+.vids{display:grid;grid-template-columns:1.25fr 1fr;gap:16px;align-items:start}
+.vids>*{min-width:0}
+.vids .tall{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.vid{margin:0}
+.vid video{width:100%;border-radius:14px;background:#0B0D0B}
+.vid.h video{aspect-ratio:16/9;object-fit:cover}
+.vid.v video{aspect-ratio:9/16;object-fit:cover}
+.vid figcaption{margin-top:10px}
+.vid figcaption b{display:block;font-weight:600;line-height:1.3}
+.vid figcaption small{color:var(--muted)}
+.vtext{margin-top:20px;color:var(--muted);max-width:46ch}
+@media (max-width:880px){.vids{grid-template-columns:1fr}}
+
+/* Steps */
+.steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px;counter-reset:s;list-style:none;padding:0;margin:0}
+.steps li{border-top:2px solid var(--ink);padding-top:18px;counter-increment:s}
+.steps li::before{content:counter(s);display:block;font-family:var(--f-display);font-stretch:75%;font-size:52px;font-weight:300;line-height:1;color:var(--wood);margin-bottom:12px}
+.steps b{display:block;font-size:17px;font-weight:600;margin-bottom:6px}
+.steps p{margin:0;color:var(--muted);font-size:14.5px}
+@media (max-width:880px){.steps{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:480px){.steps{grid-template-columns:1fr}}
+
+/* Materials (fixed physical colours, same in both themes) */
+.mats{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:16px}
+.mat .tex{aspect-ratio:1/1.15;border-radius:var(--r);margin-bottom:12px;box-shadow:inset 0 0 0 1px rgb(0 0 0/.08)}
+.mat b{display:block;font-weight:600}
+.mat small{color:var(--muted);font-size:13px;line-height:1.4;display:block}
+.t-mdf{background:#D9CBB6}
+.t-flute{background:repeating-linear-gradient(90deg,#D3C1A4 0 7px,#BBA683 7px 9px,#E0D0B6 9px 10px)}
+.t-velvet{background:radial-gradient(120% 90% at 30% 20%,#A89582,transparent 60%),radial-gradient(90% 80% at 80% 90%,#6E5F50,transparent 60%),#8C7B69}
+.t-marble{background:linear-gradient(115deg,transparent 46%,#E8E4DA 46.6%,transparent 47.6%),linear-gradient(62deg,transparent 30%,#BDB8AE 30.4%,transparent 31%),linear-gradient(150deg,transparent 64%,#D7D2C7 64.4%,transparent 65%),#1C1C1E}
+.t-glass{background:linear-gradient(135deg,rgb(255 255 255/.22),transparent 40%),linear-gradient(160deg,#5C4A30,#2E2618)}
+.t-gold{background:linear-gradient(135deg,#8E6A2B,#E6C77A 40%,#B8913F 60%,#F1DB9C 80%,#9C7834)}
+@media (max-width:880px){.mats{grid-template-columns:repeat(3,minmax(0,1fr))}}
+
+/* Contact */
+.contact{display:grid;grid-template-columns:1.1fr .9fr;gap:20px}
+.contact>*{min-width:0}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:22px;padding:clamp(22px,4vw,40px)}
+.panel.dark{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.panel.dark .eyebrow{color:inherit;opacity:.7}
+.form{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:24px}
+.form .full{grid-column:1/-1}
+.form label{display:flex;flex-direction:column;gap:6px;font-size:13.5px;font-weight:500;color:var(--muted)}
+input,select,textarea{background:var(--surface);border:1.5px solid var(--line);border-radius:12px;padding:10px 14px;font-size:14.5px;width:100%}
+input:focus,textarea:focus,select:focus{outline:none;border-color:var(--accent)}
+.form textarea{min-height:96px;resize:vertical}
+.note{background:var(--surface-2);border-radius:12px;padding:12px 14px;font-size:14px;margin-top:14px}
+.clist{list-style:none;padding:0;margin:24px 0 0;display:flex;flex-direction:column;gap:18px}
+.clist small{display:block;opacity:.7;font-size:12.5px;text-transform:uppercase;letter-spacing:.1em}
+.clist b,.clist .phone{font-size:17px;font-weight:600}
+.clist .phone{font-size:22px;text-decoration:none}
+.clist .phone:hover{text-decoration:underline}
+@media (max-width:880px){.contact{grid-template-columns:1fr}}
+@media (max-width:480px){.form{grid-template-columns:1fr}}
+
+footer{margin-top:clamp(56px,8vw,104px);border-top:1px solid var(--line);padding-block:44px 52px}
+.foot{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:28px}
+.foot p{color:var(--muted);max-width:34ch;margin:12px 0 0;font-size:14px}
+.foot h4{margin:0 0 10px;font-size:13px;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);font-weight:600}
+.foot ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:6px}
+.foot a{text-decoration:none}.foot a:hover{color:var(--accent)}
+.copy{margin-top:36px;color:var(--muted);font-size:13px}
+@media (max-width:880px){.foot{grid-template-columns:1fr 1fr}}
+
+/* Lightbox (always dark: a photo viewer) */
+.lb{position:fixed;inset:0;z-index:60;background:rgb(8 9 8/.94);color:#F0F1EC;display:grid;grid-template-rows:auto 1fr auto;animation:fade .2s}
+@keyframes fade{from{opacity:0}}
+.lb-top{display:flex;justify-content:space-between;align-items:center;padding:calc(12px + env(safe-area-inset-top,0px)) 16px 12px}
+.lb-top span{font-size:14px;opacity:.75}
+.lb-stage{position:relative;display:grid;place-items:center;min-height:0;padding:0 64px}
+.lb-stage img{max-height:100%;max-width:100%;object-fit:contain;border-radius:8px}
+.lb-cap{text-align:center;padding:14px 16px calc(18px + env(safe-area-inset-bottom,0px));font-size:15px}
+.lb button{background:rgb(255 255 255/.1);border:1px solid rgb(255 255 255/.2);color:#F0F1EC;border-radius:999px;width:46px;height:46px;display:grid;place-items:center}
+.lb button:hover{background:rgb(255 255 255/.2)}
+.lb button svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.lb .prev,.lb .next{position:absolute;top:50%;transform:translateY(-50%)}
+.lb .prev{left:12px}.lb .next{right:12px}
+@media (max-width:600px){.lb-stage{padding:0 8px}.lb .prev,.lb .next{top:auto;bottom:-58px;transform:none}.lb .prev{left:16px}.lb .next{right:16px}}
+
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+
+<header class="bar">
+  <div class="wrap">
+    <a class="logo" href="#top" aria-label="Ատաղձ, գլխավոր էջ">
+      <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M4 15 16 5l12 10v12H4z"/><path d="M11 27v-7q5-5 10 0v7"/></svg>
+      Ատաղձ
+    </a>
+    <nav class="nav" id="nav">
+      <a href="#works">Աշխատանքներ</a>
+      <a href="#videos">Տեսանյութեր</a>
+      <a href="#process">Ինչպես ենք աշխատում</a>
+      <a href="#materials">Նյութեր</a>
+      <a href="#contact">Կապ</a>
+    </nav>
+    <div class="tools">
+      <button class="icon-btn" id="themeBtn" type="button" aria-label="Փոխել թեման"><svg viewBox="0 0 24 24"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg></button>
+      <button class="icon-btn burger" id="burger" type="button" aria-label="Մենյու" aria-expanded="false"><svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+  <div class="wrap hero">
+    <div class="hero-grid">
+      <div>
+        <p class="eyebrow">Պատվերով կահույք</p>
+        <h1>Կահույք, որով տունը դառնում է <span>օջախ</span></h1>
+        <p class="lede">Խոհանոցներ, զգեստապահարաններ, ննջասենյակներ և հյուրասենյակի պատեր՝ ձեր չափսերով։ Պատրաստում ենք մեր արտադրամասում և տեղադրում ենք ինքներս։</p>
+        <div class="cta">
+          <a class="btn" href="#works">Դիտել աշխատանքները</a>
+          <a class="btn ghost" href="#contact">Ստանալ խորհրդատվություն</a>
+        </div>
+      </div>
+      <div class="hero-media">
+        <video id="heroVid" src="media/hero-loop.mp4" poster="media/hero-loop.jpg" autoplay muted loop playsinline aria-label="Մեր պատրաստած խոհանոցը"></video>
+        <div class="float"><b>Խոհանոց՝ մարմարանման սեղանի երեսով</b><small>Մեր վերջին աշխատանքներից</small></div>
+      </div>
+    </div>
+    <div class="perks">
+      <div><svg viewBox="0 0 24 24"><path d="M3 17 17 3l4 4L7 21H3z"/><path d="m7 13 2 2M10 10l2 2M13 7l2 2"/></svg><div><b>Չափագրում</b><small>Վարպետը գալիս է ձեր տուն</small></div></div>
+      <div><svg viewBox="0 0 24 24"><path d="M14.5 5.5a4 4 0 0 0-5 5L4 16l4 4 5.5-5.5a4 4 0 0 0 5-5L16 12l-4-4z"/></svg><div><b>Սեփական արտադրամաս</b><small>Ամեն ինչ պատրաստում ենք ինքներս</small></div></div>
+      <div><svg viewBox="0 0 24 24"><path d="M3 7h11v9H3zM14 10h4l3 3v3h-7z"/><circle cx="7" cy="17.5" r="1.8"/><circle cx="17.5" cy="17.5" r="1.8"/></svg><div><b>Առաքում և տեղադրում</b><small>Բերում և հավաքում ենք տեղում</small></div></div>
+      <div><svg viewBox="0 0 24 24"><path d="M12 3 4 6v6c0 4.5 3.4 8 8 9 4.6-1 8-4.5 8-9V6z"/><path d="m8.5 12 2.5 2.5 4.5-5"/></svg><div><b>Երաշխիք</b><small>Մեր պատրաստած ամեն իրի համար</small></div></div>
+    </div>
+  </div>
+
+  <section id="make">
+    <div class="wrap">
+      <div class="head"><div><p class="eyebrow">Ինչ ենք պատրաստում</p><h2>Ամբողջ տան համար</h2></div><p>Ընտրեք ուղղությունը, և ստորև կտեսնեք միայն դրա աշխատանքները։</p></div>
+      <div class="cats" id="cats"></div>
+    </div>
+  </section>
+
+  <section id="works">
+    <div class="wrap">
+      <div class="head"><div><p class="eyebrow">Պորտֆոլիո</p><h2>Մեր աշխատանքները</h2></div><p>Իրական պատվերներ՝ մեր հաճախորդների տներում։ Սեղմեք լուսանկարի վրա՝ մեծացնելու համար։</p></div>
+      <div class="filters" id="chips"></div>
+      <div class="masonry" id="gallery"></div>
+    </div>
+  </section>
+
+  <section id="workshop">
+    <div class="wrap pair">
+      <div>
+        <p class="eyebrow">Արտադրամասից՝ ձեր տուն</p>
+        <h2>Ամեն իր անցնում է մեր վարպետների ձեռքով</h2>
+        <p>Կահույքը պատրաստում ենք մեր արտադրամասում՝ ձեր չափսերով։ Այստեղ հավաքում և ստուգում ենք յուրաքանչյուր իր, հետո բերում ու տեղադրում ձեր տանը։ Այս կոմոդը ձախ նկարում դեռ արտադրամասում է, աջում՝ արդեն հաճախորդի հյուրասենյակում։</p>
+        <a class="btn ghost" href="#process">Ինչպես ենք աշխատում</a>
+      </div>
+      <div class="duo">
+        <figure><img src="media/commode-workshop.jpg" alt="Կոմոդը արտադրամասում" width="1280" height="576" loading="lazy"><figcaption>Արտադրամասում</figcaption></figure>
+        <figure><img src="media/commode.jpg" alt="Նույն կոմոդը հաճախորդի տանը" width="960" height="1280" loading="lazy"><figcaption>Ձեր տանը</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <section id="videos">
+    <div class="wrap">
+      <div class="head"><div><p class="eyebrow">Տեսանյութեր</p><h2>Տեսեք ամեն մանրուք</h2></div></div>
+      <div class="vids">
+        <div>
+          <figure class="vid h"><video src="media/video-kitchen-white.mp4" poster="media/video-kitchen-white.jpg" controls preload="none" playsinline></video>
+            <figcaption><b>Սպիտակ խոհանոց՝ մարմարանման պատով</b><small>Տեղադրման ավարտին · 10 վրկ</small></figcaption></figure>
+          <p class="vtext">Լուսանկարը չի փոխանցում ամեն ինչ։ Տեսանյութերում երևում է, թե ինչպես են բացվում դռները, ինչպես է ընկնում լույսը և ինչպես է կահույքը նստում տարածքում։</p>
+        </div>
+        <div class="tall">
+          <figure class="vid v"><video src="media/video-overview.mp4" poster="media/video-overview.jpg" controls preload="none" playsinline></video>
+            <figcaption><b>Մեր աշխատանքներից</b><small>Խոհանոց, վիտրինա, պահարան · 24 վրկ</small></figcaption></figure>
+          <figure class="vid v"><video src="media/video-walkthrough.mp4" poster="media/video-walkthrough.jpg" controls preload="none" playsinline></video>
+            <figcaption><b>Ամբողջ բնակարանը</b><small>Խոհանոցից մինչև նախասենյակ · 1 րոպե</small></figcaption></figure>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="process">
+    <div class="wrap">
+      <div class="head"><div><p class="eyebrow">Ինչպես ենք աշխատում</p><h2>Ձեր չափսերով՝ չորս քայլով</h2></div><p>Խոհանոց, զգեստապահարան կամ ամբողջ սենյակ։ Պատրաստում ենք ըստ ձեր տարածքի և ճաշակի։</p></div>
+      <ol class="steps">
+        <li><b>Չափագրում</b><p>Վարպետը գալիս է ձեր տուն և ճշգրիտ չափում տարածքը։</p></li>
+        <li><b>Նախագիծ</b><p>Պատրաստում ենք նախագիծ, ընտրում նյութերն ու գույները։</p></li>
+        <li><b>Արտադրություն</b><p>Կահույքը պատրաստվում է մեր արտադրամասում։</p></li>
+        <li><b>Առաքում և տեղադրում</b><p>Բերում ենք, հավաքում և տեղադրում ենք տեղում։</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section id="materials">
+    <div class="wrap">
+      <div class="head"><div><p class="eyebrow">Նյութեր</p><h2>Նյութեր և երանգներ</h2></div><p>Այն, ինչ տեսնում եք մեր աշխատանքներում։ Նմուշները կարող ենք բերել չափագրման ժամանակ։</p></div>
+      <div class="mats">
+        <div class="mat"><div class="tex t-mdf"></div><b>Փայլատ MDF</b><small>Հարթ ճակատներ ցանկացած գույնով</small></div>
+        <div class="mat"><div class="tex t-flute"></div><b>Ֆրեզերված ճակատներ</b><small>Ուղղահայաց ակոսներ, որոնք խաղում են լույսի հետ</small></div>
+        <div class="mat"><div class="tex t-velvet"></div><b>Թավիշ</b><small>Փափուկ գլխամասեր և պատի պանելներ</small></div>
+        <div class="mat"><div class="tex t-marble"></div><b>Մարմարանման երես</b><small>Սեղանի երես և խոհանոցի պատ</small></div>
+        <div class="mat"><div class="tex t-glass"></div><b>Մգեցված ապակի</b><small>Վիտրինաներ և պահարանի դռներ</small></div>
+        <div class="mat"><div class="tex t-gold"></div><b>Ոսկեգույն պրոֆիլ</b><small>Բռնակներ, ոտքեր և զարդեզրեր</small></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="wrap contact">
+      <div class="panel">
+        <p class="eyebrow">Խորհրդատվություն</p>
+        <h2>Պատմեք, ինչ եք ուզում</h2>
+        <form class="form" id="leadForm" novalidate>
+          <label>Անուն<input id="leadName" required autocomplete="name"></label>
+          <label>Հեռախոս<input id="leadPhone" type="tel" required placeholder="+374" autocomplete="tel"></label>
+          <label class="full">Ինչ է պետք<select id="leadRoom"></select></label>
+          <label class="full">Հաղորդագրություն<textarea id="leadMsg" placeholder="Օրինակ՝ անկյունային խոհանոց, պատը 3,2 մ և 2,4 մ"></textarea></label>
+          <div class="full"><button class="btn" type="submit">Ուղարկել հայտը</button></div>
+        </form>
+        <div id="leadNote"></div>
+      </div>
+      <div class="panel dark">
+        <p class="eyebrow">Կապ</p>
+        <h2>Զանգահարեք մեզ</h2>
+        <ul class="clist">
+          <li><small>Կոնտակտային անձ</small><b>Վահագն</b></li>
+          <li><small>Հեռախոս</small><a class="phone num" href="tel:+37494759466">+374 94 75 94 66</a></li>
+          <li><small>Հեռախոս</small><a class="phone num" href="tel:+37491759466">+374 91 75 94 66</a></li>
+        </ul>
+        <p style="margin:24px 0 0;opacity:.8">Զանգահարեք, և Վահագնը կպատասխանի բոլոր հարցերին՝ չափսերից ու նյութերից մինչև գինը և ժամկետները։</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <div><a class="logo" href="#top"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M4 15 16 5l12 10v12H4z"/><path d="M11 27v-7q5-5 10 0v7"/></svg>Ատաղձ</a><p>Պատվերով կահույք ձեր տան համար՝ չափագրումից մինչև տեղադրում։</p></div>
+      <div><h4>Աշխատանքներ</h4><ul id="footCats"></ul></div>
+      <div><h4>Մեր մասին</h4><ul><li><a href="#workshop">Արտադրամաս</a></li><li><a href="#process">Ինչպես ենք աշխատում</a></li><li><a href="#materials">Նյութեր</a></li><li><a href="#videos">Տեսանյութեր</a></li></ul></div>
+      <div><h4>Կապ</h4><ul><li>Վահագն</li><li><a class="num" href="tel:+37494759466">+374 94 75 94 66</a></li><li><a class="num" href="tel:+37491759466">+374 91 75 94 66</a></li><li><a href="#contact">Գրել մեզ</a></li></ul></div>
+    </div>
+    <p class="copy">© 2026 Ատաղձ կահույք</p>
+  </div>
+</footer>
+
+<div id="lbHost"></div>
+
+<script>
+const CATS = [
+  {id:"kitchen",  name:"Խոհանոցներ",           cover:"kitchen-grey-1"},
+  {id:"wardrobe", name:"Զգեստապահարաններ",     cover:"bedroom-wardrobe-1"},
+  {id:"bedroom",  name:"Ննջասենյակներ",        cover:"bed-diamond"},
+  {id:"living",   name:"Հյուրասենյակ",         cover:"tv-wall-1"},
+  {id:"cabinet",  name:"Կոմոդներ և վիտրինաներ", cover:"vitrine"},
+  {id:"hall",     name:"Նախասենյակ",           cover:"hall-wardrobe"}
+];
+/* f: media/<f>.jpg · w,h: pixel size */
+const WORKS = [
+  {f:"kitchen-loft-1",     w:960, h:1280, c:["kitchen"],             t:"Խոհանոց՝ մարմարանման սեղանի երեսով և ձողավոր բար-սեղանով"},
+  {f:"kitchen-grey-1",     w:1280,h:576,  c:["kitchen"],             t:"Անկյունային խոհանոց՝ դասական ֆրեզերված ճակատներով"},
+  {f:"bed-diamond",        w:576, h:1280, c:["bedroom"],             t:"Մահճակալ՝ բարձր թավշյա գլխամասով"},
+  {f:"tv-wall-1",          w:1280,h:576,  c:["living"],              t:"Հյուրասենյակի պատ՝ ֆրեզերված ճակատներով և ապակե դարակներով"},
+  {f:"bedroom-wardrobe-1", w:1280,h:576,  c:["bedroom","wardrobe"],  t:"Ննջասենյակ՝ զգեստապահարան ապակե դռներով և զարդասեղան"},
+  {f:"vitrine",            w:960, h:1280, c:["cabinet","living"],    t:"Վիտրինա՝ մգեցված ապակիով և սև շրջանակով"},
+  {f:"headboard",          w:576, h:1280, c:["bedroom"],             t:"Թավշյա պանելներ՝ ոսկեգույն պրոֆիլով"},
+  {f:"hall-wardrobe",      w:960, h:1280, c:["hall","wardrobe"],     t:"Նախասենյակի պահարան՝ ֆրեզերված ճակատներով"},
+  {f:"kitchen-grey-2",     w:1280,h:575,  c:["kitchen"],             t:"Անկյունային խոհանոց՝ ապակե դռներով վերին պահարաններ"},
+  {f:"commode",            w:960, h:1280, c:["cabinet","living"],    t:"Կոմոդ՝ ոսկեգույն բռնակներով և ոտքերով"},
+  {f:"bed-velvet",         w:960, h:1280, c:["bedroom"],             t:"Մահճակալ՝ թավշյա գլխամասով և գիշերային պահարաններով"},
+  {f:"tv-wall-2",          w:1280,h:576,  c:["living"],              t:"Հյուրասենյակի պատ՝ կախովի ստորին պահարանով"},
+  {f:"kitchen-loft-2",     w:960, h:1280, c:["kitchen"],             t:"Նույն խոհանոցը՝ ամբողջ տեսքով"},
+  {f:"bedroom-wardrobe-2", w:1280,h:576,  c:["bedroom","wardrobe"],  t:"Զգեստապահարան՝ սև բռնակներով և մգեցված ապակիով"},
+  {f:"kitchen-white",      w:576, h:1280, c:["kitchen"],             t:"Սպիտակ խոհանոց՝ սև մարմարանման սյունով, տեղադրման փուլում"},
+  {f:"kitchen-grey-3",     w:1280,h:576,  c:["kitchen"],             t:"Անկյունային խոհանոց՝ մարմարանման պատով"},
+  {f:"commode-workshop",   w:1280,h:576,  c:["cabinet"],             t:"Կոմոդը մեր արտադրամասում՝ նախքան առաքումը"}
+];
+
+const $ = s => document.querySelector(s);
+const esc = s => String(s).replace(/[&<>"']/g, m => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]));
+const img = f => `media/${f}.jpg`;
+const store = {
+  get(k,d){ try{ const v = localStorage.getItem(k); return v ? JSON.parse(v) : d; }catch(e){ return d; } },
+  set(k,v){ try{ localStorage.setItem(k, JSON.stringify(v)); }catch(e){} }
+};
+const count = id => WORKS.filter(w => w.c.includes(id)).length;
+const word = n => n === 1 ? "աշխատանք" : "աշխատանք";
+
+let filter = "all", shown = WORKS;
+
+function renderCats(){
+  $("#cats").innerHTML = CATS.map(c => `
+    <button class="cat" type="button" data-cat="${c.id}">
+      <img src="${img(c.cover)}" alt="" loading="lazy">
+      <span class="lbl"><b>${c.name}</b><span>${count(c.id)} ${word(count(c.id))}</span></span>
+    </button>`).join("");
+  $("#footCats").innerHTML = CATS.map(c => `<li><a href="#works" data-cat="${c.id}">${c.name}</a></li>`).join("");
+  $("#leadRoom").innerHTML = CATS.map(c => `<option>${c.name}</option>`).join("") + "<option>Ամբողջ բնակարան</option><option>Այլ</option>";
+}
+function renderChips(){
+  $("#chips").innerHTML = [{id:"all",name:"Բոլորը"}, ...CATS].map(c =>
+    `<button class="chip" type="button" data-chip="${c.id}" aria-pressed="${filter===c.id}">${c.name}<small>${c.id==="all"?WORKS.length:count(c.id)}</small></button>`).join("");
+}
+function renderGallery(){
+  shown = filter === "all" ? WORKS : WORKS.filter(w => w.c.includes(filter));
+  $("#gallery").innerHTML = shown.map((w,i) => `
+    <button class="shot" type="button" data-shot="${i}" aria-label="Մեծացնել՝ ${esc(w.t)}">
+      <figure style="margin:0"><img src="${img(w.f)}" alt="${esc(w.t)}" width="${w.w}" height="${w.h}" loading="lazy">
+      <figcaption>${esc(w.t)}</figcaption></figure>
+    </button>`).join("");
+}
+function setFilter(id){ filter = id; renderChips(); renderGallery(); }
+
+/* Lightbox */
+let cur = 0, lastFocus = null;
+const I = {
+  x:'<svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></svg>',
+  l:'<svg viewBox="0 0 24 24"><path d="m15 5-7 7 7 7"/></svg>',
+  r:'<svg viewBox="0 0 24 24"><path d="m9 5 7 7-7 7"/></svg>'
+};
+function openLb(i){
+  lastFocus = document.activeElement; cur = i;
+  $("#lbHost").innerHTML = `<div class="lb" role="dialog" aria-modal="true" aria-label="Լուսանկար">
+    <div class="lb-top"><span id="lbCount"></span><button type="button" data-lbclose aria-label="Փակել">${I.x}</button></div>
+    <div class="lb-stage"><img id="lbImg" alt="">
+      <button class="prev" type="button" data-step="-1" aria-label="Նախորդը">${I.l}</button>
+      <button class="next" type="button" data-step="1" aria-label="Հաջորդը">${I.r}</button></div>
+    <div class="lb-cap" id="lbCap"></div></div>`;
+  document.body.style.overflow = "hidden";
+  showLb(); $("[data-lbclose]").focus();
+}
+function showLb(){
+  const w = shown[cur];
+  $("#lbImg").src = img(w.f); $("#lbImg").alt = w.t;
+  $("#lbCap").textContent = w.t;
+  $("#lbCount").textContent = `${cur+1} / ${shown.length}`;
+}
+function step(d){ cur = (cur + d + shown.length) % shown.length; showLb(); }
+function closeLb(){ $("#lbHost").innerHTML = ""; document.body.style.overflow = ""; lastFocus?.focus?.(); }
+
+document.addEventListener("click", e => {
+  const g = s => e.target.closest(s);
+  if(g("[data-cat]")){ setFilter(g("[data-cat]").dataset.cat); if(g(".cat")) $("#works").scrollIntoView(); return; }
+  if(g("[data-chip]")){ setFilter(g("[data-chip]").dataset.chip); return; }
+  if(g("[data-shot]")){ openLb(+g("[data-shot]").dataset.shot); return; }
+  if(g("[data-step]")){ step(+g("[data-step]").dataset.step); return; }
+  if(g("[data-lbclose]") || (e.target.classList?.contains("lb-stage"))){ closeLb(); return; }
+  if(g(".nav a")){ $("#nav").classList.remove("open"); $("#burger").setAttribute("aria-expanded","false"); }
+});
+document.addEventListener("keydown", e => {
+  if(!$("#lbHost").innerHTML) return;
+  if(e.key === "Escape") closeLb();
+  if(e.key === "ArrowLeft") step(-1);
+  if(e.key === "ArrowRight") step(1);
+});
+let tx = null;
+document.addEventListener("touchstart", e => { if(e.target.closest(".lb-stage")) tx = e.touches[0].clientX; }, {passive:true});
+document.addEventListener("touchend", e => { if(tx === null) return; const dx = e.changedTouches[0].clientX - tx; tx = null; if(Math.abs(dx) > 50) step(dx < 0 ? 1 : -1); });
+
+/* Only one video plays at a time */
+document.querySelectorAll(".vid video").forEach(v => v.addEventListener("play", () =>
+  document.querySelectorAll(".vid video").forEach(o => { if(o !== v) o.pause(); })));
+
+$("#leadForm").addEventListener("submit", e => {
+  e.preventDefault();
+  const need = [$("#leadName"), $("#leadPhone")].filter(i => !i.value.trim());
+  if(need.length){ $("#leadNote").innerHTML = `<div class="note">Լրացրեք անունը և հեռախոսահամարը։</div>`; need[0].focus(); return; }
+  $("#leadNote").innerHTML = `<div class="note">Կայքը դեռ դեմո տարբերակով է, և հայտը չի ուղարկվում։ Զանգահարեք Վահագնին՝ +374 94 75 94 66 կամ +374 91 75 94 66։</div>`;
+});
+$("#burger").addEventListener("click", () => { const o = $("#nav").classList.toggle("open"); $("#burger").setAttribute("aria-expanded", o); });
+$("#themeBtn").addEventListener("click", () => {
+  const r = document.documentElement;
+  const dark = r.dataset.theme ? r.dataset.theme === "dark" : matchMedia("(prefers-color-scheme: dark)").matches;
+  r.dataset.theme = dark ? "light" : "dark"; store.set("atagh.theme", r.dataset.theme);
+});
+(() => { const t = store.get("atagh.theme", null); if(t) document.documentElement.dataset.theme = t; })();
+if(matchMedia("(prefers-reduced-motion: reduce)").matches){ const v = $("#heroVid"); v.removeAttribute("autoplay"); v.pause(); }
+
+renderCats(); renderChips(); renderGallery();
+</script>
+</body>
+</html>
